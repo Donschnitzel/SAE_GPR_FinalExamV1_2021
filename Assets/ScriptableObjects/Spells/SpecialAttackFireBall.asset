@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe027bb29072f8549ab32d3bf0b20a52, type: 3}
-  m_Name: SpecialAttack
+  m_Name: SpecialAttackFireBall
   m_EditorClassIdentifier: 
-  SpellName: SecondsShockBlast
+  SpellName: FireBall
   Description: Fires a ball lighting that quickly flies in a straight line.
   SpellIcon: {fileID: 21300000, guid: 92b315788e6ebb34f90dddacbca17e68, type: 3}
   Duration: 0.5
