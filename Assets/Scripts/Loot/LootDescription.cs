@@ -22,7 +22,10 @@ public class LootDescription : ScriptableObject
                 return pair.Drop;
             }
         }
-        return null;
+        //returns eighter Drop1 Gold or Drop2 Soul by a 50% chance if old Probability drop calculation would fail for all drops in drops[]
+        return Random.value < 0.5 ? drops[0].Drop : drops[1].Drop;
+        // we we would return null we spawn nothing
+        //return null;
     }
 }
 
