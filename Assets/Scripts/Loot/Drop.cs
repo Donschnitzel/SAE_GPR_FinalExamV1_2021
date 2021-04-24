@@ -17,6 +17,8 @@ public class Drop : ScriptableObject
     public string PickUpText;
 
     public DropRarity Rarity;
+    public bool IsAbility;
+    public ProjectileSpellDescription projectileSpellDescription;
 }
 
 public enum DropRarity

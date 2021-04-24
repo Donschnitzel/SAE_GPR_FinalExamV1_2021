@@ -17,3 +17,5 @@ MonoBehaviour:
     Probability: 0.5
   - Drop: {fileID: 11400000, guid: 0bde8caaa21dbb0469af86af5120360f, type: 2}
     Probability: 0.5
+  - Drop: {fileID: 11400000, guid: dd5f25c3863f01845a64cdf52896034c, type: 2}
+    Probability: 0.1

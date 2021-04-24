@@ -16106,6 +16106,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7545065591762958709, guid: 91b6b57c44ad937458ed73bc6b1700c8, type: 3}
+      propertyPath: specialAttackSpell
+      value: 
+      objectReference: {fileID: 11400000, guid: 9b587f462e707a744bcf7f97703aded2, type: 2}
     - target: {fileID: 7958410239221670385, guid: 91b6b57c44ad937458ed73bc6b1700c8, type: 3}
       propertyPath: m_Name
       value: Eve_Player
@@ -48109,6 +48113,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7675646753312853964, guid: bcfad1aaf5703904aa7410139c95257c, type: 3}
+      propertyPath: dropsPrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7675646753312853964, guid: bcfad1aaf5703904aa7410139c95257c, type: 3}
+      propertyPath: dropsPrefabs.Array.data[2].Drop
+      value: 
+      objectReference: {fileID: 11400000, guid: dd5f25c3863f01845a64cdf52896034c, type: 2}
+    - target: {fileID: 7675646753312853964, guid: bcfad1aaf5703904aa7410139c95257c, type: 3}
+      propertyPath: dropsPrefabs.Array.data[2].Prefab
+      value: 
+      objectReference: {fileID: 640079952340650554, guid: 1ef2558ea8549a74cb6b0c87b4adad5d, type: 3}
     - target: {fileID: 9197474405759586917, guid: bcfad1aaf5703904aa7410139c95257c, type: 3}
       propertyPath: m_RootOrder
       value: 2

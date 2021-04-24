@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,13 +10,17 @@ public class PlayerHud : MonoBehaviour
 
     [SerializeField] private Image spellIcon;
     [SerializeField] private TMPro.TMP_Text spellCooldownText;
+    [SerializeField] private Image secondSpellIcon;
+    [SerializeField] private TMPro.TMP_Text secondSpellCooldownText;
     [SerializeField] private TMPro.TMP_Text pickUPText;
+    [SerializeField] private GameObject secondAblity;
     [SerializeField] private float fadingSpeed = 0.5f;
     [SerializeField] private float shrinkingSpeed = 5;
     [SerializeField] private GameObject collectUIObject;
     private Coroutine currenCoroutine;
     private float startFontSize;
     private Color startTextColor;
+    private bool isSecondAbilityEnabled = false;
 
     private void Start()
     {
@@ -26,9 +31,19 @@ public class PlayerHud : MonoBehaviour
 
         dropCollector.DropsInRangeChanged += OnDropsInRangeChanged;
         dropCollector.DropCollected += OnPickUpLoot;
+        dropCollector.AbilityCollected += OnAbilityCollected;
         startFontSize = pickUPText.fontSize;
         startTextColor = pickUPText.color;
     }
+
+    private void OnAbilityCollected(ProjectileSpellDescription obj)
+    {
+        isSecondAbilityEnabled = true;
+        secondSpellIcon.sprite = obj.SpellIcon;
+        secondAblity.SetActive(true);
+
+    }
+
     private void OnPickUpLoot(Drop drop)
     {
         if (currenCoroutine != null)
@@ -37,7 +52,7 @@ public class PlayerHud : MonoBehaviour
         }
         ResetPickUpTextValues();
         pickUPText.text = drop.PickUpText;
-        StartCoroutine(FadeOutText( pickUPText));
+        StartCoroutine(FadeOutText(pickUPText));
     }
 
     private void ResetPickUpTextValues()
@@ -47,7 +62,7 @@ public class PlayerHud : MonoBehaviour
         pickUPText.color = startTextColor;
     }
 
-    private IEnumerator FadeOutText( TMPro.TMP_Text text)
+    private IEnumerator FadeOutText(TMPro.TMP_Text text)
     {
         text.color = new Color(text.color.r, text.color.g, text.color.b, 1);
         while (text.color.a > 0.0f)
@@ -55,7 +70,7 @@ public class PlayerHud : MonoBehaviour
             text.color = new Color(text.color.r, text.color.g, text.color.b, text.color.a - (Time.deltaTime * fadingSpeed));
             if (text.fontSize > 1f)
             {
-                text.fontSize -=Time.deltaTime * shrinkingSpeed;
+                text.fontSize -= Time.deltaTime * shrinkingSpeed;
             }
             yield return null;
         }
@@ -70,6 +85,7 @@ public class PlayerHud : MonoBehaviour
     private void Update()
     {
         float cooldown = spellCastingController.GetSimpleAttackCooldown();
+
         if (cooldown > 0)
         {
             spellCooldownText.text = cooldown.ToString("0.0");
@@ -79,6 +95,20 @@ public class PlayerHud : MonoBehaviour
         {
             spellCooldownText.text = "";
             spellIcon.color = Color.white;
+        }
+        if (isSecondAbilityEnabled)
+        {
+            float secondCooldown = spellCastingController.GetSpecialAttackCooldown();
+            if (secondCooldown > 0)
+            {
+                secondSpellCooldownText.text = secondCooldown.ToString("0.0");
+                secondSpellIcon.color = new Color(0.25f, 0.25f, 0.25f, 1);
+            }
+            else
+            {
+                secondSpellCooldownText.text = "";
+                secondSpellIcon.color = Color.white;
+            }
         }
     }
 }
