@@ -29,6 +29,7 @@ public class RunnerBehaviour : MonoBehaviour, IEnemy
     [Header("Injected")]
     [SerializeField] private AiTargetingManager targetingManager;
     [SerializeField] private DropSpawner dropSpawner;
+    [SerializeField] private Collider collider;
 
     private Transform target;
 
@@ -67,14 +68,17 @@ public class RunnerBehaviour : MonoBehaviour, IEnemy
         animator.SetTrigger(DEAD_ANIMATOR_ID);
         navMeshAgent.isStopped = true;
         navMeshAgent.enabled = false;
-
-        yield return new WaitForSeconds(3f);
+        if (collider!=null)
+        {
+            collider.enabled = false;
+        }
 
         if (lootDescription != null)
         {
             var drop = lootDescription.SelectDropRandomly();
             dropSpawner.SpawnDropAt(drop, transform.position);
         }
+        yield return new WaitForSeconds(3f);
 
         Destroy(gameObject);
     }

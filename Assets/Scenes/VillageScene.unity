@@ -16058,6 +16058,10 @@ PrefabInstance:
       propertyPath: walkSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132148507359903, guid: 91b6b57c44ad937458ed73bc6b1700c8, type: 3}
+      propertyPath: rotationPower
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7294181437124901707, guid: 91b6b57c44ad937458ed73bc6b1700c8, type: 3}
       propertyPath: m_RootOrder
       value: 4
