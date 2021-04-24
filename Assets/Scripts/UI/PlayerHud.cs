@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,13 @@ public class PlayerHud : MonoBehaviour
 
     [SerializeField] private Image spellIcon;
     [SerializeField] private TMPro.TMP_Text spellCooldownText;
+    [SerializeField] private TMPro.TMP_Text pickUPText;
+    [SerializeField] private float fadingSpeed = 0.5f;
+    [SerializeField] private float shrinkingSpeed = 5;
     [SerializeField] private GameObject collectUIObject;
+    private Coroutine currenCoroutine;
+    private float startFontSize;
+    private Color startTextColor;
 
     private void Start()
     {
@@ -18,6 +25,41 @@ public class PlayerHud : MonoBehaviour
         spellIcon.sprite = spellCastingController.SimpleAttackSpellDescription.SpellIcon;
 
         dropCollector.DropsInRangeChanged += OnDropsInRangeChanged;
+        dropCollector.DropCollected += OnPickUpLoot;
+        startFontSize = pickUPText.fontSize;
+        startTextColor = pickUPText.color;
+    }
+    private void OnPickUpLoot(Drop drop)
+    {
+        if (currenCoroutine != null)
+        {
+            StopCoroutine(currenCoroutine);
+        }
+        ResetPickUpTextValues();
+        pickUPText.text = drop.PickUpText;
+        StartCoroutine(FadeOutText( pickUPText));
+    }
+
+    private void ResetPickUpTextValues()
+    {
+        pickUPText.text = "";
+        pickUPText.fontSize = startFontSize;
+        pickUPText.color = startTextColor;
+    }
+
+    private IEnumerator FadeOutText( TMPro.TMP_Text text)
+    {
+        text.color = new Color(text.color.r, text.color.g, text.color.b, 1);
+        while (text.color.a > 0.0f)
+        {
+            text.color = new Color(text.color.r, text.color.g, text.color.b, text.color.a - (Time.deltaTime * fadingSpeed));
+            if (text.fontSize > 1f)
+            {
+                text.fontSize -=Time.deltaTime * shrinkingSpeed;
+            }
+            yield return null;
+        }
+
     }
 
     private void OnDropsInRangeChanged()

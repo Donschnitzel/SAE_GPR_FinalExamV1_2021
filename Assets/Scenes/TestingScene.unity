@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44959438, g: 0.49666315, b: 0.55953807, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -624,6 +624,10 @@ PrefabInstance:
       propertyPath: spellCastingController
       value: 
       objectReference: {fileID: 724643075}
+    - target: {fileID: 2339331336603351729, guid: 6a02c65e5d22fa14b891cdec6695a56e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -100
+      objectReference: {fileID: 0}
     - target: {fileID: 9194845279064379432, guid: 6a02c65e5d22fa14b891cdec6695a56e, type: 3}
       propertyPath: m_Name
       value: Canvas_PlayerHUD
