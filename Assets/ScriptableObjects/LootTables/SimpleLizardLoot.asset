@@ -20,4 +20,4 @@ MonoBehaviour:
   - Drop: {fileID: 11400000, guid: dd5f25c3863f01845a64cdf52896034c, type: 2}
     Probability: 0.1
   - Drop: {fileID: 11400000, guid: be320aeb3f018e647b866ed7b985158f, type: 2}
-    Probability: 1
+    Probability: 0.1
