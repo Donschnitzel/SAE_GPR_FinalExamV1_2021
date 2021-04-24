@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b9a414f9a170f041bedaace873a6460, type: 3}
   m_Name: Drop04_AbilityEarthWall
   m_EditorClassIdentifier: 
-  DropName: 
+  DropName: EarthWall
   Description: 
   PickUpText: 'You learned a new Ability: Earth Wall'
   Rarity: 2

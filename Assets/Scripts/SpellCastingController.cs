@@ -60,13 +60,28 @@ public class SpellCastingController : MonoBehaviour, IPlayerAction
         animator.SetTrigger(specialAttackSpell.AnimationVariableName);
 
         yield return new WaitForSeconds(specialAttackSpell.ProjectileSpawnDelay);
-
-        Instantiate(specialAttackSpell.ProjectilePrefab, castLocationTransform.position, castLocationTransform.rotation);
+        if (specialAttackSpell.SpellName != "EarthWall")
+        {
+            Instantiate(specialAttackSpell.ProjectilePrefab, castLocationTransform.position, castLocationTransform.rotation);
+        }
+        else
+        {
+            GameObject obj = Instantiate(specialAttackSpell.ProjectilePrefab, new Vector3(castLocationTransform.position.x, castLocationTransform.position.y - 4, castLocationTransform.position.z) + castLocationTransform.forward * 5, castLocationTransform.rotation);
+            StartCoroutine(MoveEarthWall(obj.transform));
+        }
 
         yield return new WaitForSeconds(specialAttackSpell.Duration - specialAttackSpell.ProjectileSpawnDelay);
 
         lastSpecialAttackTimestamp = Time.time;
         inAction = false;
+    }
+    private IEnumerator MoveEarthWall(Transform transform)
+    {
+        while (transform.position.y < 0)
+        {
+            transform.position += Vector3.up * Time.deltaTime;
+            yield return null;
+        }
     }
 
     private IEnumerator SimpleAttackRoutine()
